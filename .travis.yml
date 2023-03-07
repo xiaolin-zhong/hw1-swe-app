@@ -1,4 +1,37 @@
-language: ruby
-rvm:
- - 2.2
- - jruby
+language: python
+
+python:
+  - "3.7"
+
+
+install:
+   - pip install -r requirements.txt
+
+before_script:
+  - python manage.py migrate
+
+after_script:
+  - coveralls
+
+script:
+  # Run Black formatter
+  - black --check .
+
+  # Run Flake8 linter
+  - flake8 .
+  # Run Django tests
+  - coverage run manage.py test
+
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $ACCESS_KEY_ID
+  secret_access_key: $ACCESS_KEY
+  region: "us-east-1"
+  app: "sw1-app"
+  env: "hw1-dev"
+  bucket_name: "elasticbeanstalk-us-east-1-635723932813"
+  bucket_path: "hw1/"
+  on:
+    repo: xiaolin-zhong/hw1-swe1-app
+    branch: main
