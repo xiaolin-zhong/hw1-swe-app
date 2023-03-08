@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 
@@ -24,7 +24,7 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
-#Translates to (for func):
+# Translates to (for func):
 # def index(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
 #     context = {'latest_question_list': latest_question_list}

@@ -11,7 +11,7 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
 ]
 
-#Translates to (for func):
+# Translates to (for func):
 # urlpatterns = [
 #     # ex: /polls/
 #     path('', views.index, name='index'),
